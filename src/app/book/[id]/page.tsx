@@ -5,10 +5,12 @@ import { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { books } from '../../data/books';
-import { Book, CartItem } from '../../types';
+import { reviews } from '../../data/reviews';
+import { Book, CartItem, Review } from '../../types';
 
 export default function BookDetailPage() {
   const [book, setBook] = useState<Book | null>(null);
+  const [bookReviews, setBookReviews] = useState<Review[]>([]);
   const [quantity, setQuantity] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -22,6 +24,9 @@ export default function BookDetailPage() {
       const foundBook = books.find((b) => b.id === id);
       if (foundBook) {
         setBook(foundBook);
+        // Get reviews for this book
+        const bookReviewsData = reviews.filter((review) => review.bookId === id);
+        setBookReviews(bookReviewsData);
       } else {
         setError('Book not found.');
       }
@@ -76,6 +81,14 @@ export default function BookDetailPage() {
     return stars;
   };
 
+  const formatDate = (timestamp: string) => {
+    const date = new Date(timestamp);
+    return date.toLocaleDateString('en-US', { 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric' 
+    });
+  };
 
   if (isLoading) {
     return <div className="text-center py-10">Loading...</div>;
@@ -150,6 +163,53 @@ export default function BookDetailPage() {
             &larr; Back to Home
           </Link>
         </div>
+      </div>
+
+      {/* Reviews Section */}
+      <div className="mt-12">
+        <h2 className="text-2xl font-bold text-gray-800 mb-6">Customer Reviews</h2>
+        
+        {bookReviews.length > 0 ? (
+          <div className="space-y-6">
+            {bookReviews.map((review) => (
+              <div key={review.id} className="bg-white p-6 rounded-lg shadow-md border border-gray-200">
+                <div className="flex items-start justify-between mb-3">
+                  <div className="flex items-center space-x-3">
+                    <div className="flex items-center">
+                      {renderStars(review.rating)}
+                    </div>
+                    <span className="text-sm text-gray-500">•</span>
+                    <span className="text-sm text-gray-600">{formatDate(review.timestamp)}</span>
+                    {review.verified && (
+                      <>
+                        <span className="text-sm text-gray-500">•</span>
+                        <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">
+                          Verified Purchase
+                        </span>
+                      </>
+                    )}
+                  </div>
+                </div>
+                
+                <h3 className="text-lg font-semibold text-gray-800 mb-2">{review.title}</h3>
+                <p className="text-gray-700 mb-3 leading-relaxed">{review.comment}</p>
+                
+                <div className="flex items-center justify-between">
+                  <span className="text-sm font-medium text-gray-600">by {review.author}</span>
+                  <div className="flex items-center space-x-2 text-xs text-gray-500">
+                    <button className="hover:text-blue-500">Helpful</button>
+                    <span>•</span>
+                    <button className="hover:text-blue-500">Report</button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-8 bg-gray-50 rounded-lg">
+            <p className="text-gray-600">No reviews yet. Be the first to review this book!</p>
+          </div>
+        )}
       </div>
     </div>
   );

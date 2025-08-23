@@ -82,23 +82,23 @@ export default function CartPage() {
   const totalPrice = cartItems.reduce((total, item) => total + (item.book.price * item.quantity), 0);
 
   if (isLoading) {
-    return <div className="text-center py-10 dark:text-white">Loading...</div>;
+    return <div className="text-center py-10">Loading...</div>;
   }
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold text-gray-800 dark:text-white mb-8">Shopping Cart</h1>
+      <h1 className="text-3xl font-bold text-gray-800 mb-8">Shopping Cart</h1>
       
       {cartItems.length === 0 ? (
-        <div className="text-center py-12">
-          <h2 className="text-xl text-gray-600 dark:text-gray-400 mb-4">Your cart is empty</h2>
-          <Link href="/" className="bg-blue-500 text-white px-6 py-3 rounded-md hover:bg-blue-600 dark:hover:bg-blue-700 transition-colors">
+        <div className="text-center py-12 bg-white rounded-lg shadow-md">
+          <h2 className="text-xl text-gray-600 mb-4">Your cart is empty</h2>
+          <Link href="/" className="bg-blue-500 text-white px-6 py-3 rounded-md hover:bg-blue-600 transition-colors">
             Continue Shopping
           </Link>
         </div>
       ) : (
         <>
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md">
+          <div className="bg-white rounded-lg shadow-md">
             {cartItems.map((item) => (
               <CartItem
                 key={item.book.id}
@@ -109,18 +109,18 @@ export default function CartPage() {
             ))}
           </div>
           
-          <div className="mt-8 bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
-            <div className="flex justify-between items-center text-xl font-bold mb-4">
-              <span className="dark:text-white">Total: ${totalPrice.toFixed(2)}</span>
+          <div className="mt-8 bg-white rounded-lg shadow-md p-6">
+            <div className="flex justify-between items-center text-xl font-bold mb-4 text-gray-800">
+              <span>Total: ${totalPrice.toFixed(2)}</span>
             </div>
             
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link href="/" className="flex-1 bg-gray-500 text-white text-center py-3 rounded-md hover:bg-gray-600 dark:hover:bg-gray-700 transition-colors">
+              <Link href="/" className="flex-1 bg-gray-500 text-white text-center py-3 rounded-md hover:bg-gray-600 transition-colors">
                 Continue Shopping
               </Link>
               <button 
                 onClick={clearCart}
-                className="flex-1 bg-red-500 text-white py-3 rounded-md hover:bg-red-600 dark:hover:bg-red-700 transition-colors"
+                className="flex-1 bg-red-500 text-white py-3 rounded-md hover:bg-red-600 transition-colors"
               >
                 Clear Cart
               </button>

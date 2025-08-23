@@ -26,3 +26,14 @@ export interface CartItem {
   quantity: number;
   addedAt: string;
 }
+
+export interface Review {
+  id: string;
+  bookId: string;
+  author: string;
+  rating: number;
+  title: string;
+  comment: string;
+  timestamp: string;
+  verified: boolean;
+}
