@@ -1,13 +1,19 @@
 // src/app/components/BookCard.tsx
-import React from 'react';
+'use client';
+
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { Book } from '../types';
 
 interface BookCardProps {
   book: Book;
+  onAddToCart?: (bookId: string) => void;
 }
 
-const BookCard: React.FC<BookCardProps> = ({ book }) => {
+const BookCard: React.FC<BookCardProps> = ({ book, onAddToCart }) => {
+  const [isAddingToCart, setIsAddingToCart] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+
   // Function to render star ratings
   const renderStars = (rating: number) => {
     const stars = [];
@@ -19,6 +25,33 @@ const BookCard: React.FC<BookCardProps> = ({ book }) => {
       );
     }
     return stars;
+  };
+
+  // Handle add to cart
+  const handleAddToCart = async (e: React.MouseEvent) => {
+    e.preventDefault(); // Prevent navigation when clicking the button
+    e.stopPropagation();
+    
+    if (!book.inStock || isAddingToCart) return;
+    
+    setIsAddingToCart(true);
+    
+    try {
+      // Simulate API call delay
+      await new Promise(resolve => setTimeout(resolve, 500));
+      
+      if (onAddToCart) {
+        onAddToCart(book.id);
+      }
+      
+      // Show success feedback
+      setShowSuccess(true);
+      setTimeout(() => setShowSuccess(false), 2000);
+    } catch (error) {
+      console.error('Error adding to cart:', error);
+    } finally {
+      setIsAddingToCart(false);
+    }
   };
 
   return (

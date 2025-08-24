@@ -196,11 +196,6 @@ export default function BookDetailPage() {
                 
                 <div className="flex items-center justify-between">
                   <span className="text-sm font-medium text-gray-600">by {review.author}</span>
-                  <div className="flex items-center space-x-2 text-xs text-gray-500">
-                    <button className="hover:text-blue-500">Helpful</button>
-                    <span>•</span>
-                    <button className="hover:text-blue-500">Report</button>
-                  </div>
                 </div>
               </div>
             ))}
