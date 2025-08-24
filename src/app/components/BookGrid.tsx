@@ -144,7 +144,7 @@ const BookGrid: React.FC<BookGridProps> = ({ books, onAddToCart }) => {
                   <button
                     key={index}
                     onClick={() => goToFeaturedPage(index)}
-                    className={`w-2 h-2 rounded-full transition-colors duration-200 ${
+                    className={`w-2 h-2 rounded-full transition-colors duration-200 cursor-pointer ${
                       index === featuredCarouselIndex 
                         ? 'bg-blue-600' 
                         : 'bg-gray-300 hover:bg-gray-400'
@@ -158,7 +158,7 @@ const BookGrid: React.FC<BookGridProps> = ({ books, onAddToCart }) => {
               <div className="flex gap-2">
                 <button
                   onClick={goToPreviousFeatured}
-                  className="p-2 rounded-full bg-white border border-gray-300 hover:bg-gray-50 transition-colors duration-200"
+                  className="p-2 rounded-full bg-white border border-gray-300 hover:bg-gray-50 transition-colors duration-200 cursor-pointer"
                   aria-label="Previous featured books"
                 >
                   <svg className="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -167,7 +167,7 @@ const BookGrid: React.FC<BookGridProps> = ({ books, onAddToCart }) => {
                 </button>
                 <button
                   onClick={goToNextFeatured}
-                  className="p-2 rounded-full bg-white border border-gray-300 hover:bg-gray-50 transition-colors duration-200"
+                  className="p-2 rounded-full bg-white border border-gray-300 hover:bg-gray-50 transition-colors duration-200 cursor-pointer"
                   aria-label="Next featured books"
                 >
                   <svg className="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -255,7 +255,7 @@ const BookGrid: React.FC<BookGridProps> = ({ books, onAddToCart }) => {
             {/* Sort Order Toggle */}
             <button
               onClick={() => setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc')}
-              className="flex items-center gap-1 px-3 py-2 border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+              className="flex items-center gap-1 px-3 py-2 border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm cursor-pointer"
               aria-label={`Sort ${sortOrder === 'asc' ? 'descending' : 'ascending'}`}
             >
               {sortOrder === 'asc' ? (
