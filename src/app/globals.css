@@ -8,6 +8,9 @@
 }
 
 /* Ensure light background without conflicting with Tailwind */
-html {
-  background-color: #f9fafb;
+html,body{
+  /* background-color: #f9fafb; */
+    background-color: #eff6ff !important; /* Changed from #f9fafb to light blue */
+    
+
 }

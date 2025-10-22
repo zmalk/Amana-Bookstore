@@ -181,7 +181,7 @@ const BookGrid: React.FC<BookGridProps> = ({ books, onAddToCart }) => {
         
         {/* Featured Books Carousel */}
         <div className="relative">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-12">
             {currentFeaturedBooks.map(book => (
               <BookCard key={book.id} book={book} onAddToCart={onAddToCart} />
             ))}
@@ -255,7 +255,7 @@ const BookGrid: React.FC<BookGridProps> = ({ books, onAddToCart }) => {
             {/* Sort Order Toggle */}
             <button
               onClick={() => setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc')}
-              className="flex items-center gap-1 px-3 py-2 border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm cursor-pointer"
+              className="flex items-center gap-1 px-3 py-2 border border-gray-300 rounded-md hover:hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm cursor-pointer"
               aria-label={`Sort ${sortOrder === 'asc' ? 'descending' : 'ascending'}`}
             >
               {sortOrder === 'asc' ? (

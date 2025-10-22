@@ -92,7 +92,7 @@ const BookCard: React.FC<BookCardProps> = ({ book, onAddToCart }) => {
       </Link>
       
       {/* Book Information */}
-      <div className="p-4">
+      <div className="p-4 ">
         <Link href={`/book/${book.id}`} className="block cursor-pointer">
           <h3 className="text-lg font-semibold text-gray-800 truncate hover:text-blue-600 transition-colors duration-200">{book.title}</h3>
           <p className="text-sm text-gray-600 mt-1">by {book.author}</p>
@@ -139,7 +139,7 @@ const BookCard: React.FC<BookCardProps> = ({ book, onAddToCart }) => {
                 ? 'bg-green-600 text-white cursor-pointer'
                 : isAddingToCart
                 ? 'bg-blue-400 text-white cursor-wait'
-                : 'bg-blue-600 text-white hover:bg-blue-700 cursor-pointer'
+                : 'bg-red-600 text-white hover:bg-red-200 cursor-pointer'
             }`}
           >
             {showSuccess ? (
